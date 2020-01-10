@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # Size Test
-
 echo "Testing db size"
 sqlite3 db/cons_size.db < constrained_tables.sql
 sqlite3 db/cons_size.db < insert_data.sql
@@ -9,7 +8,24 @@ sqlite3 db/cons_size.db < insert_data.sql
 sqlite3 db/free_size.db < free_tables.sql
 sqlite3 db/free_size.db < insert_data.sql
 
+
 ls -lh db/*
+
+sync
+echo "Running constrained query test (10x)"
+time for i in {1..10}
+do
+  sqlite3 db/cons_size.db < queries.sql > /dev/null
+done
+
+sleep 1
+sync
+
+echo "Running free query test (10x)"
+time for i in {1..10}
+do
+  sqlite3 db/free_size.db < queries.sql > /dev/null
+done
 rm db/*
 
 sync
