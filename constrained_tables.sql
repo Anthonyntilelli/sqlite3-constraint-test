@@ -1,4 +1,5 @@
 PRAGMA foreign_keys = TRUE;
+
 CREATE TABLE categories(
   id   INTEGER PRIMARY KEY,
   name TEXT NOT NULL UNIQUE

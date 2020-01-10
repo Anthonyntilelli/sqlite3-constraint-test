@@ -8,7 +8,7 @@ CREATE TABLE categories(
 CREATE TABLE meals(
   id            INTEGER PRIMARY KEY,
   name          TEXT,
-  categories_id INTEGER 
+  categories_id INTEGER,
   price         REAL,
   active        INTEGER
 );
